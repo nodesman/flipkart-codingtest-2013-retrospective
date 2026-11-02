@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flipkart Machine Coding Round (Feb 20, 2013) — 13-Year Retrospective | Raj Sekharan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050505;
+            --surface: #0c0c0e;
+            --surface-elevated: #121216;
+            --border: #222228;
+            --border-subtle: #18181d;
+            --text: #f2f2f5;
+            --text-muted: #9a9aa6;
+            --text-dim: #646470;
+            --accent: #00f0ff;
+            --accent-soft: rgba(0, 240, 255, 0.1);
+            --emerald: #10b981;
+            --emerald-soft: rgba(16, 185, 129, 0.12);
+            --amber: #f59e0b;
+            --amber-soft: rgba(245, 158, 11, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header / Nav */
+        header.topbar {
+            border-bottom: 1px solid var(--border);
+            background: rgba(5, 5, 5, 0.88);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .topbar-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+        }
+
+        .brand {
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 600;
+        }
+
+        .brand-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.15s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 5.5rem 0 4rem;
+            border-bottom: 1px solid var(--border);
+            background: radial-gradient(circle at 80% 10%, rgba(0, 240, 255, 0.06), transparent 45%);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--accent);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            background: var(--accent-soft);
+            padding: 0.35rem 0.85rem;
+            border-radius: 4px;
+            margin-bottom: 1.75rem;
+            letter-spacing: 0.04em;
+        }
+
+        .hero h1 {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: clamp(2.4rem, 4.5vw, 4rem);
+            font-weight: 500;
+            line-height: 1.12;
+            letter-spacing: -0.02em;
+            max-width: 960px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 em {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .hero-lead {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 820px;
+            margin-bottom: 2.25rem;
+        }
+
+        .meta-strip {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            padding: 1.25rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .meta-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            letter-spacing: 0.06em;
+        }
+
+        .meta-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .meta-value.pass {
+            color: var(--emerald);
+        }
+
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.35rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.15s ease;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background: #52f5ff;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--surface-elevated);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Section Layout */
+        section {
+            padding: 4.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-header {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 2.25rem;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        /* Personal Note */
+        .personal-note {
+            background: linear-gradient(180deg, #0d0d11 0%, #09090c 100%);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: 8px;
+            padding: 2.75rem;
+        }
+
+        .personal-note p {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 1.28rem;
+            line-height: 1.75;
+            color: #e4e4ec;
+            margin-bottom: 1.35rem;
+        }
+
+        .personal-note p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .personal-note strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .signature {
+            margin-top: 2rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border-subtle);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Email Exchange */
+        .email-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 860px) {
+            .email-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .email-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .email-header {
+            background: var(--surface-elevated);
+            padding: 1rem 1.35rem;
+            border-bottom: 1px solid var(--border);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .email-header div {
+            margin-bottom: 0.25rem;
+        }
+
+        .email-header span.hl {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .email-body {
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.84rem;
+            line-height: 1.65;
+            color: #d6d6e0;
+            white-space: pre-wrap;
+            flex: 1;
+        }
+
+        .outcome-banner {
+            margin-top: 1.5rem;
+            padding: 1.15rem 1.5rem;
+            background: var(--emerald-soft);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .outcome-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: var(--emerald);
+            color: #000;
+            padding: 0.25rem 0.65rem;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        /* Live Demo Frame */
+        .demo-instructions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1.1rem 1.25rem;
+        }
+
+        .step-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            margin-bottom: 0.35rem;
+            display: block;
+        }
+
+        .step-card h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.35rem;
+            color: var(--text);
+        }
+
+        .step-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .browser-window {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #1a1a1f;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        .browser-chrome {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.65rem 1rem;
+            background: var(--surface-elevated);
+            border-bottom: 1px solid var(--border);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .window-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .window-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #333;
+        }
+
+        .window-dots span:nth-child(1) { background: #ff5f56; }
+        .window-dots span:nth-child(2) { background: #ffbd2e; }
+        .window-dots span:nth-child(3) { background: #27c93f; }
+
+        .demo-iframe {
+            width: 100%;
+            height: 520px;
+            border: none;
+            background: #fff;
+            display: block;
+        }
+
+        /* Architectural Review Grid */
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .review-card .num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--accent);
+        }
+
+        .review-card h3 {
+            font-size: 1.15rem;
+            line-height: 1.35;
+            color: var(--text);
+        }
+
+        .review-card p {
+            font-size: 0.93rem;
+            color: var(--text-muted);
+        }
+
+        .code-snippet {
+            background: #070709;
+            border: 1px solid var(--border-subtle);
+            border-radius: 6px;
+            padding: 0.9rem 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            line-height: 1.55;
+            color: #d4d4dc;
+            overflow-x: auto;
+            margin-top: auto;
+        }
+
+        /* Full Source Code Viewer */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 0;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            background: var(--surface);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            border-bottom: none;
+            padding: 0.7rem 1.2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            cursor: pointer;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .tab-btn.active {
+            background: #09090c;
+            color: var(--accent);
+            border-color: var(--border);
+            font-weight: 600;
+        }
+
+        .source-panel {
+            display: none;
+            background: #09090c;
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            max-height: 680px;
+            overflow-y: auto;
+        }
+
+        .source-panel.active {
+            display: block;
+        }
+
+        .source-panel pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: #e2e2ea;
+        }
+
+        footer {
+            padding: 3.5rem 0;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a href="#" class="brand">
+                <span class="brand-dot"></span>
+                <span>RAJ SEKHARAN // 2013 MACHINE CODING TIME CAPSULE</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#personal-note">Reflection</a>
+                <a href="#email-thread">The 2013 Email</a>
+                <a href="#live-demo">Live Demo</a>
+                <a href="#code-review">Code Review</a>
+                <a href="#source-code">Raw Source</a>
+                <a href="original-2013-archive/sol.zip" download>sol.zip &darr;</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="eyebrow">TIME CAPSULE &bull; WED, 20 FEB 2013 (17:14 &rarr; 22:32 IST) &bull; BANGALORE</div>
+            <h1>&ldquo;Attached is my solution. It&rsquo;s partial and doesn&rsquo;t do everything you asked. <em>But here is anyway FWIW.</em>&rdquo;</h1>
+            <p class="hero-lead">
+                On a Wednesday evening in February 2013—while working as a UI Consultant at ThoughtWorks in India—I was sent a 5-hour machine coding test by Flipkart: build Microsoft Excel in pure vanilla JavaScript (no jQuery, must support IE7, Firefox, and Chrome). Thirteen years later, I opened the original <code>.eml</code> and <code>sol.zip</code> archive.
+            </p>
+
+            <div class="meta-strip">
+                <div class="meta-item">
+                    <span class="meta-label">Date &amp; Window</span>
+                    <span class="meta-value">20 Feb 2013 (5:14 PM – 10:32 PM)</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Constraints</span>
+                    <span class="meta-value">No Libraries (Zero jQuery) &bull; IE7/FF/Chrome</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Artifact Size</span>
+                    <span class="meta-value">sol.zip (3,502 bytes &bull; 374 LOC JS)</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Actual Outcome</span>
+                    <span class="meta-value pass">&#10003; Invited to Onsite Interview</span>
+                </div>
+            </div>
+
+            <div class="cta-row">
+                <a href="#live-demo" class="btn btn-primary">Try the Live 2013 Spreadsheet &darr;</a>
+                <a href="#code-review" class="btn btn-secondary">Read the 2026 Architectural Review</a>
+                <a href="original-2013-archive/sol.zip" download class="btn btn-secondary">Download Untouched sol.zip (2013)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1. Personal Reflection -->
+    <section id="personal-note">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">01 // Personal Note (November 2026)</span>
+                <h2 class="section-title">How It Feels Rediscovering This Code 13 Years Later</h2>
+            </div>
+
+            <div class="personal-note">
+                <p>
+                    When you spend 15+ years in software engineering—moving from India to Amsterdam, climbing from entry-level trainee to <strong>ThoughtWorks</strong>, <strong>Freshworks</strong>, <strong>Booking.com</strong>, and <strong>Staff Software Engineer at ServiceNow</strong>, and weathering the bruising politics that sometimes come with large corporations—it is surprisingly easy to forget how good you already were when you were young.
+                </p>
+                <p>
+                    Finding <code>Machine Coding Round - Raj Sekharan(1).eml</code> in my archives felt like opening a sealed letter from my 24-year-old self. Look at the context of that Wednesday night on <strong>February 20, 2013</strong>: there was no AI, no ES6, no CSS Grid or Flexbox, and Flipkart’s prompt arrived at <strong>5:14 PM</strong> after a full workday. It banned jQuery at a time when 95% of web developers couldn’t attach a click listener without <code>$()</code>, and demanded compatibility back to <strong>Internet Explorer 7</strong>.
+                </p>
+                <p>
+                    What moves me most looking at <code>spreadsheet.js</code> today isn’t that it was finished—it wasn’t. What moves me is <em>how</em> my 24-year-old brain chose to spend those five hours. Instead of hacking together a cheap 3&times;3 HTML <code>&lt;table&gt;</code> with ugly buttons just to tick boxes, I opened Notepad++ (leaving behind the telltale <code>new  3.txt</code> scratch file) and tried to build a <strong>real desktop spreadsheet instrument</strong>: a closure-encapsulated <code>LayoutManager</code>, a top-left <code>#junction</code> origin block, Smalltalk/Ruby-style <code>columnDo</code> and <code>rowDo</code> higher-order iterators using <code>callback.apply(el)</code>, my own cross-browser <code>bind()</code> shim, coordinate-tagged cells (<code>columnoffsetval</code>) that survive arbitrary row and column deletions without shifting-index bugs, and a custom right-click context menu.
+                </p>
+                <p>
+                    At 10:32 PM, exhausted and out of time before wiring up column sorting, I didn’t make up excuses or hide. I zipped the folder, wrote two honest sentences—<em>&ldquo;Attached is my solution. It’s partial and doesn’t do everything you asked. But here is anyway FWIW.&rdquo;</em>—and hit send. <strong>And Flipkart called me in for the interview anyway</strong>, because the engineer who read the code saw immediately that it was 100% original, hand-crafted vanilla JavaScript architecture.
+                </p>
+                <p>
+                    Thirteen years later, in 2026—after shipping <strong>Markd</strong> in native C++20 and Qt 6 and writing <em>The Load-Bearing Pixel</em>—this tiny 3.5 KB zip file reminds me of an unbroken truth: <strong>caring deeply about the craft of the interface and the integrity of the underlying system is who I have been from the very beginning.</strong>
+                </p>
+
+                <div class="signature">
+                    <span>&mdash; Raj Sekharan (Raj Aramudan)</span>
+                    <span>Bangalore (Feb 2013) &rarr; Amsterdam (Nov 2026)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. The Original 2013 Email Exchange -->
+    <section id="email-thread">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">02 // The Verbatim 2013 Email Thread</span>
+                <h2 class="section-title">5:14 PM Challenge &rarr; 10:32 PM Submission</h2>
+            </div>
+
+            <div class="email-grid">
+                <div class="email-card">
+                    <div class="email-header">
+                        <div>From: <span class="hl">Abhinav Rastogi &lt;abhinav.rastogi@flipkart.com&gt;</span></div>
+                        <div>To: <span class="hl">Raj Sekharan &lt;flarecore@gmail.com&gt;</span></div>
+                        <div>Date: <span class="hl">Wed, 20 Feb 2013 at 17:14 IST</span></div>
+                        <div>Subject: <span class="hl">Machine Coding Round - Raj Sekharan</span></div>
+                    </div>
+                    <div class="email-body">Hi Raj, This is in regards to the Machine Coding Round you have with Flipkart. Here is the task which you need to complete within the specified time of 5 hours.
+
+Implement basic excel sheet using JavaScript/HTML/CSS
+
+1. Should have m X n cells in the sheet
+2. Should have ability to add/remove rows or columns to/from the existing sheet
+3. Clicking on each cell should make it as editable and clicking anywhere else should take the cell back to ready-only mode.
+4. Should have ability to sort the data
+5. Solve time: 5 hours.
+
+Some basic rules to keep in mind -
+1. Code should work in multiple browsers (minimum IE7, FF and Chrome)
+2. Use native javascript. No javascript libraries are allowed.
+3. Once done with the test, mail us back the files in zip format.
+4. Originality of code is very important</div>
+                </div>
+
+                <div class="email-card">
+                    <div class="email-header">
+                        <div>From: <span class="hl">Raj Sekharan &lt;flarecore@gmail.com&gt;</span></div>
+                        <div>To: <span class="hl">Abhinav Rastogi &lt;abhinav.rastogi@flipkart.com&gt;</span></div>
+                        <div>Date: <span class="hl">Wed, 20 Feb 2013 at 22:32:34 +0530</span></div>
+                        <div>Attachment: <span class="hl">sol.zip (3,502 bytes)</span></div>
+                    </div>
+                    <div class="email-body">Hey,
+
+Attached is my solution. It's partial and doesn't do everything you asked.
+But here is anyway FWIW.
+
+Raj</div>
+                </div>
+            </div>
+
+            <div class="outcome-banner">
+                <span class="outcome-badge">RESULT: PASSED TO INTERVIEW</span>
+                <span>Despite being a partial submission at 10:32 PM, the Flipkart engineering reviewer inspected <code>spreadsheet.js</code>, recognized 374 lines of original closure-structured vanilla ES5 &amp; IE7/W3C DOM engineering, and invited me in for the onsite interview.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Interactive Live 2013 Demo -->
+    <section id="live-demo">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">03 // Live Interactive 2013 Artifact</span>
+                <h2 class="section-title">Play With the 2013 Spreadsheet Engine Right in Your Browser</h2>
+            </div>
+
+            <div class="demo-instructions">
+                <div class="step-card">
+                    <span class="step-num">INTERACTION 01 // INLINE EDIT</span>
+                    <h4>Click Any Cell &amp; Type</h4>
+                    <p>Clicking any cell sets <code>contentEditable="true"</code> in place without swapping <code>&lt;input&gt;</code> nodes. Clicking away blurs it back to read-only.</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-num">INTERACTION 02 // ROW &amp; COL SELECTION</span>
+                    <h4>Click Header <code>0..49</code> or Left Gutter</h4>
+                    <p>Click any top column header (<code>0</code>, <code>1</code>, <code>2</code>&hellip;) or any left-hand gray row selector box to highlight the entire column or row via <code>columnDo</code> / <code>rowDo</code>.</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-num">INTERACTION 03 // CUSTOM CONTEXT MENU</span>
+                    <h4>Select Row/Col &rarr; Right-Click &rarr; Delete</h4>
+                    <p>Once a column or row is highlighted, <strong>right-click anywhere on the grid</strong> to open the custom context menu and click <strong>Delete Column</strong> or <strong>Delete Row</strong>.</p>
+                </div>
+            </div>
+
+            <div class="browser-window">
+                <div class="browser-chrome">
+                    <div class="window-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <span>demo/index.html &mdash; LayoutManager (50 &times; 50 Grid, Pure Vanilla JS)</span>
+                    <a href="demo/index.html" target="_blank" style="color: var(--accent); text-decoration: none;">Open Fullscreen &nearr;</a>
+                </div>
+                <iframe class="demo-iframe" src="demo/index.html" title="2013 Flipkart Machine Coding Spreadsheet Demo"></iframe>
+            </div>
+            <p style="margin-top: 0.85rem; font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; color: var(--text-dim);">
+                * Note on historical preservation: The untouched byte-for-byte 2013 files (written for IE7/IE8 on Windows in Notepad++) are archived in <a href="original-2013-archive/sol.zip" style="color: var(--accent);">original-2013-archive/sol.zip</a>. The live embed above includes a tiny strict-mode compatibility patch (<code>var el</code> declaration on line 251, standard CSS <code>left/top</code> alongside IE's <code>posLeft/posTop</code>, and removing one stray <code>&lt;</code> in <code>index.html</code>) so it runs identically in 2026 Chrome/Safari/Firefox as it did in 2013 IE.
+            </p>
+        </div>
+    </section>
+
+    <!-- 4. Architectural & Code Review -->
+    <section id="code-review">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">04 // 2026 Engineering Code Review</span>
+                <h2 class="section-title">What Stands Out in the 2013 Implementation</h2>
+            </div>
+
+            <div class="review-grid">
+                <div class="review-card">
+                    <span class="num">SIGNAL 01 // CLOSURE OOP &amp; STRICT MODE</span>
+                    <h3>Douglas Crockford Style Encapsulation</h3>
+                    <p>
+                        In February 2013, 90% of submissions had global functions scattered across a script tag. Opening the file with an IIFE, <code>"use strict";</code>, and an encapsulated <code>LayoutManager</code> constructor immediately signaled real JavaScript maturity.
+                    </p>
+                    <pre class="code-snippet">(function () {
+    "use strict";
+
+    var LayoutManager = function () {
+        var defaultRowCount = 50;
+        var defaultColumnCount = 50;</pre>
+                </div>
+
+                <div class="review-card">
+                    <span class="num">SIGNAL 02 // THOUGHTWORKS RUBY / SMALLTALK DNA</span>
+                    <h3>Higher-Order Iterators (<code>columnDo</code> &amp; <code>rowDo</code>)</h3>
+                    <p>
+                        Named after Smalltalk/Ruby <code>do</code> blocks from ThoughtWorks, <code>columnDo</code> and <code>rowDo</code> pass each matching DOM cell as <code>this</code> via <code>callback.apply(el)</code>—rebuilding jQuery&rsquo;s <code>.each()</code> mechanism from scratch and reusing it across select, unselect, and delete.
+                    </p>
+                    <pre class="code-snippet">columnDo(selectedColumn, function() {
+    if (this === null || this === undefined)
+        return;
+    this.parentNode.removeChild(this);
+});</pre>
+                </div>
+
+                <div class="review-card">
+                    <span class="num">SIGNAL 03 // COORDINATE INVARIANTS</span>
+                    <h3>Solving the &ldquo;Shifting Index on Delete&rdquo; Bug</h3>
+                    <p>
+                        If you delete Column 2 using raw DOM child indices (<code>childNodes[2]</code>), Column 3 shifts to index 2 and subsequent deletions corrupt the grid. By stamping every cell with logical coordinate attributes (<code>columnoffsetval</code> and <code>row</code>), deleting arbitrary rows or columns never broke subsequent selections.
+                    </p>
+                    <pre class="code-snippet">var offset = parseInt(el.getAttribute("columnoffsetval"));
+if (offset == index) {
+    callback.apply(el);
+}</pre>
+                </div>
+
+                <div class="review-card">
+                    <span class="num">SIGNAL 04 // ZERO-LIBRARY BROWSER SHIMS</span>
+                    <h3>Hand-Rolled Cross-Browser <code>bind()</code> &amp; IE7 Shims</h3>
+                    <p>
+                        Because jQuery was prohibited and IE7 was required, I wrote custom shims for event binding (<code>attachEvent</code> vs. <code>addEventListener</code>), target resolution (<code>e.srcElement</code> vs. <code>e.target</code>), and even compensated for W3C whitespace text-node offsets in <code>childNodes</code>.
+                    </p>
+                    <pre class="code-snippet">var bind = function (ele, e, callback) {
+    if (ele.attachEvent) {
+        ele.attachEvent("onclick", callback);
+    } else {
+        ele.addEventListener(e, callback);
+    }
+};</pre>
+                </div>
+
+                <div class="review-card">
+                    <span class="num">SIGNAL 05 // DESKTOP GUI MINDSET</span>
+                    <h3><code>LayoutManager</code>, <code>#junction</code> &amp; Context Menus</h3>
+                    <p>
+                        Borrowing <code>LayoutManager</code> from Java Swing / Android UI architecture, I built a full-viewport <code>div</code> grid with a 30&times;30px top-left <code>#junction</code> origin block, row/column selector bars, and context-sensitive right-click menus (<code>#menu-row</code> vs. <code>#menu-col</code>).
+                    </p>
+                    <pre class="code-snippet">if (document.attachEvent) {
+    document.attachEvent("oncontextmenu", handler);
+} else {
+    document.addEventListener("contextmenu", handler);
+}</pre>
+                </div>
+
+                <div class="review-card">
+                    <span class="num">SIGNAL 06 // HONEST RETROSPECTIVE LESSON</span>
+                    <h3>Why the 5-Hour Clock Ran Out (DOM vs. 2D State)</h3>
+                    <p>
+                        Why did I run out of time before finishing Sort and Add Row? Because I spent 3.5 hours perfecting the desktop-style viewport chrome and mutated 2,500 DOM nodes directly instead of backing the grid with a tiny 2D array (<code>grid[r][c]</code>). It was the classic craftsman trade-off—and the exact reason the reviewer still said yes.
+                    </p>
+                    <pre class="code-snippet">// The 2013 Notepad++ artifact inside sol.zip:
+// File: "sol/new  3.txt" (4 lines)
+#canvase {
+    background-color: #fff;
+}</pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Raw 2013 Source Code Viewer -->
+    <section id="source-code">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">05 // Complete 2013 Source Archive</span>
+                <h2 class="section-title">Inspect the Original Files from <code>sol.zip</code></h2>
+            </div>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('js', this)">sol/spreadsheet.js (374 lines)</button>
+                <button class="tab-btn" onclick="showTab('html', this)">sol/index.html (41 lines)</button>
+                <button class="tab-btn" onclick="showTab('css', this)">sol/style.css (83 lines)</button>
+                <button class="tab-btn" onclick="showTab('txt', this)">sol/new  3.txt (4 lines)</button>
+            </div>
+
+            <div id="tab-js" class="source-panel active">
+<pre><code>(function () {
+    "use strict";
+
+    var LayoutManager = function () {
+		var defaultRowCount = 50;
+		var defaultColumnCount = 50;
+		
+		var currentRowCount = defaultRowCount;
+		var currentColumnCount = defaultColumnCount;
+		
+		var canvas = document.getElementById("container");
+		
+		var headerContainer = document.getElementById("header");
+		var bodyContainer = document.getElementById("body");
+	
+		var getAvailableWidth = function () {
+			var width;
+			if (self.innerHeight) {
+					width = self.innerWidth;
+			}
+			else if (document.documentElement &amp;&amp; document.documentElement.clientHeight) {
+					width = document.documentElement.clientWidth;
+			}
+			else if (document.body) {
+					width = document.body.clientWidth;
+			}
+			return width;
+		};
+		
+		var getAvaialbleHeight = function () {
+		
+			var height = 0;
+			if (self.innerHeight) {
+					height = self.innerHeight;
+			}
+			else if (document.documentElement &amp;&amp; document.documentElement.clientHeight) {
+					height = document.documentElement.clientHeight;
+			}
+			else if (document.body) {
+					height = document.body.clientHeight;
+			}
+			return height;
+		};
+		
+		var selectedColumn = null;
+		var selectedRow = null;
+		
+		var unselectColumn = function (index) {
+		
+		    columnDo(index, function() {
+				if (this === undefined)
+					return;
+				var sclassName = this.className;
+				sclassName = sclassName.replace("selected","");
+				this.className = sclassName;
+			});
+			
+		};
+		
+		var unselectRow = function (index) {
+		
+		    rowDo(index, function() {
+				if (this === undefined)
+					return;
+				var sclassName = this.className;
+				sclassName = sclassName.replace("selected","");
+				this.className = sclassName;
+			});
+			
+		};
+		
+		var columnDo = function (index, callback) {
+			
+			for (var iter=0; iter &lt; currentRowCount; iter++) {
+				//get the appropriate row
+				var row = bodyContainer.childNodes[iter];
+				
+				for (var subiter = 1; subiter &lt; row.childNodes.length; subiter++) {
+					var el = row.childNodes[subiter];
+					var offset = parseInt(el.getAttribute("columnoffsetval"));
+					if (offset == index) {
+				       callback.apply(el);
+					}
+				}
+				
+			}
+		}
+		
+		var rowDo = function (index, callback) {
+			
+			for (var iter=1; iter &lt;=currentColumnCount; iter++) {
+				//get the appropriate row
+				var i = index;
+				if (!window.attachEvent)
+					i = index+1;
+				var cell = bodyContainer.childNodes[i].childNodes[iter];
+				callback.apply(cell);
+			}
+		};
+		
+		
+		var selectColumn = function (columnIndex) {
+		
+			if (columnIndex === null || columnIndex === undefined) {
+				return;
+			}
+			
+			resetSelection();
+			selectedColumn = columnIndex;
+			columnDo(columnIndex, function () {
+				if (this === undefined)
+					return;
+				var sClass = this.className;
+				if (sClass.indexOf("selected") != -1 )
+					return;
+				else {
+					sClass += " selected";
+					this.className = sClass;
+				}
+
+			});
+		
+		};
+		
+		var resetSelection = function () {
+		    if (selectedColumn !== null || selectedRow !== null) {
+				unselectRow(selectedRow);
+				unselectColumn(selectedColumn);
+				selectedColumn = null;
+				selectedRow = null;
+			}
+		};
+		
+		
+		var selectRow = function (rowIndex) {
+		
+			if (rowIndex === null || rowIndex === undefined) {
+				return;
+			}
+			resetSelection();
+			selectedRow = rowIndex;
+			rowDo(rowIndex, function () {
+				var sClass = this.className;
+				if (sClass.indexOf("selected") != -1 )
+					return;
+				else {
+					sClass += " selected";
+					this.className = sClass;
+				}
+
+			});
+		
+		};
+		
+		var bind = function (ele, e, callback) {
+			if (ele.attachEvent) {
+				ele.attachEvent("onclick", callback);
+			}
+			else {
+				ele.addEventListener(e, callback);
+			}
+		};
+		
+		
+		
+		var init = function () {
+			
+			
+			var createHeaderCell = function () {
+				var headerCell = document.createElement("div");
+				headerCell.setAttribute("class", "table-head");
+				headerCell.setAttribute("style", "background-color: #ccc; border-bottom: 1px solid #000");
+				
+				return headerCell;
+			};
+			
+			for (var iter = 0; iter &lt; defaultColumnCount; iter++ ) {
+				var headerElement = createHeaderCell();
+				headerElement.setAttribute("id","col-"+iter);
+				headerElement.setAttribute("columnoffsetval", iter);
+				bind(headerElement, "click",  function(e) {
+					var el = (e.srcElement)?e.srcElement:e.target;
+					selectColumn(parseInt(el.getAttribute("columnoffsetval")));
+				});
+				
+				headerElement.innerHTML= iter;
+				
+				headerContainer.appendChild(headerElement);
+			}
+			
+			
+			var createRowSelector = function () {
+				var selector = document.createElement("div");
+				selector.setAttribute("style","height: 30px; width: 30px; border-right: 1px solid #cdc; border-top: 1px solid #aaa; border-bottom: 1px solid #eee");
+				selector.setAttribute("class", "table-row-selector");
+
+				return selector;
+			}
+			
+			var deleteColumn = function () {
+				//remove table header
+				if (selectedColumn === null)
+					return
+				var headercell = document.getElementById("col-"+selectedColumn);
+				headercell.parentNode.removeChild(headercell);
+				//remove all rows for that column
+				
+				columnDo(selectedColumn, function() {
+					if (this === null || this === undefined)
+						return;
+					this.parentNode.removeChild(this);
+				});
+				
+				dismisContext();
+			
+			};
+			
+			
+			var delCol = document.getElementById("deletecol");
+			
+			bind(delCol, "click", deleteColumn); 
+			
+			var deleteRow = function() {
+				if (selectedRow === null)
+					return;
+				var tableBody = document.getElementById("body");
+				
+				for (var iter=1; iter &lt; tableBody.childNodes.length; iter++) {
+
+					var current = tableBody.childNodes[iter];
+					if (!current)
+						continue;
+					if (selectedRow == parseInt(current.getAttribute("row")))
+						current.parentNode.removeChild(current);
+				}
+				
+				selectedRow = null ;
+					
+				dismisContext();
+			
+			};
+			
+			var delrowmenu = document.getElementById("deleterow");
+			
+			bind(delrowmenu, "click", deleteRow);
+			
+			var getDefaultCell = function () {
+				var cell = document.createElement("div");
+				cell.setAttribute("class","table-cell");
+				bind(cell, "click", function(e) {
+					el  = (e.srcElement)?e.srcElement:e.target;
+					el.setAttribute("contentEditable","true");
+				});
+				
+				var contentEditableDisble = function (e) {
+					el  = (e.srcElement)?e.srcElement:e.target;
+					el.setAttribute("contentEditable","true");
+				};
+				
+				if (cell.attachEvent) {
+					cell.attachEvent("onblur", contentEditableDisble);
+				}
+				return cell;
+			};
+			
+			var getRow = function () {
+			    var row = document.createElement("div");
+				row.setAttribute("class","table-row");
+				return row;
+			};
+			
+			for (var rowIter=0; rowIter&lt; defaultRowCount; rowIter++) {
+			    var row = getRow();
+				row.setAttribute("row",rowIter);
+				bodyContainer.appendChild(row);
+				var rowSelector = createRowSelector();
+				rowSelector.setAttribute("id","row-" + rowIter);
+				rowSelector.setAttribute("rowoffsetval", rowIter);
+				
+				bind(rowSelector, "click", function(e) {
+					var el = (e.srcElement)?e.srcElement:e.target;
+					 selectRow(parseInt(el.getAttribute("rowoffsetval"))	);
+				});
+				
+				row.appendChild(rowSelector);
+				
+			    for (var iter = 0; iter &lt; defaultColumnCount; iter++) {
+					var cell = getDefaultCell();
+					cell.setAttribute("rowoffsetval", rowIter);
+					cell.setAttribute("columnoffsetval", iter);
+					row.appendChild(cell);
+				}
+			}
+
+		};
+		
+		var availableWidth = getAvailableWidth();
+		var availableHeight = getAvaialbleHeight();
+		init();
+		
+		//bind to right click;
+		var menuShown = false;
+		
+		var dismisContext = function() {
+			var menu = document.getElementById("menu-row");
+			menu.style.visibility="hidden";
+			menuShown = false;
+			
+			var menu = document.getElementById("menu-col");
+			menu.style.visibility="hidden";
+			menuShown = false;
+			
+			
+		
+		}
+		
+		var handler = function(e) {
+			if (e.stopPropagation)
+				e.stopPropagation();
+			e.cancelBubble = true;
+			e.returnValue = false;
+			
+			if (selectedRow !== null) {
+				var menu = document.getElementById("menu-row");
+				menu.style.visibility="visible";
+				menu.style.zIndex = 5;
+				menu.style.posLeft = e.clientX;
+				menu.style.posTop = e.clientY;
+				menuShown = true;
+				
+				bind(canvas, "click", function () {
+					
+				});
+				
+			}
+			
+			if (selectedColumn !== null) {
+				var menu = document.getElementById("menu-col");
+				menu.style.visibility="visible";
+				menu.style.zIndex = 5;
+				menu.style.posLeft = e.clientX;
+				menu.style.posTop = e.clientY;
+				menuShown = true;
+				
+				bind(canvas, "click", function () {
+					
+				});
+			}
+			
+			
+			
+			return false;
+		};
+		
+		if (document.attachEvent) {
+			document.attachEvent("oncontextmenu", handler);
+		}
+		else {
+			document.addEventListener("contextmenu", handler);
+		}
+	};
+	
+    var start = function () {
+        var LayoutManger = new LayoutManager();
+    };
+
+    if (window.attachEvent) {
+        window.onload = start;
+    }
+    else {
+        window.addEventListener("load", start);
+    }
+	
+})();</code></pre>
+            </div>
+
+            <div id="tab-html" class="source-panel">
+<pre><code>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /&gt;
+&lt;title&gt;Spreadsheet&lt;/title&gt;
+&lt;link href="style.css" rel="stylesheet" type="text/css"/&gt;
+&lt;script type="text/javascript" src="spreadsheet.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;div id="container"&gt;
+  &lt;div id="elements"&gt;
+	&lt;div id="header"&gt;
+		&lt;div id="junction"&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	
+	&lt;div id="body"&gt;
+  &lt;/div&gt;
+		
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;
+&lt;div class="menu-row menu"&gt;
+	&lt;ul id="menu-row"&gt;
+	   &lt;li id="rowbefore"&gt;Add Row Before&lt;/li&gt;
+	   &lt;li id="rowafter"&gt;Add Row After&lt;/li&gt;
+	   &lt;li id="deleterow"&gt;Delete Row&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div class="menu-col menu"&gt;
+		&lt;ul id="menu-col"&gt;
+		   &lt;li id="columnbefore"&gt;Add Column Before&lt;/li&gt;
+		   &lt;li id="columnafter"&gt;Add Column After&lt;/li&gt;
+		   &lt;li id="deletecol"&gt;Delete Column&lt;/li&gt;
+		&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+            <div id="tab-css" class="source-panel">
+<pre><code>#container {
+	background-color: #fff;
+	margin: 0 auto;
+	position:absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	overlfow: auto;
+}
+#header {
+    width: 10000px;
+}
+#junction {
+	width: 30px;
+	height: 30px;
+	background-color: #ccc;
+	float: left;
+	border-bottom: 1px solid #000;
+}
+
+.table-head {
+	background-color: #ccc;
+	border-bottom: 1px solid #000;
+	border-right: 1px solid #eee;
+    float: left;
+	width: 100px; 
+	text-align: center;
+	height: 30px;
+}
+
+.table-row-selector {
+	background-color: #ccc;
+	float: left;
+
+}
+
+.table-row {
+	clear: left;
+	width: 10000px;
+
+}
+
+.table-cell.selected {
+	background-color: #eee;
+}
+
+.table-cell {
+	float:left;
+	border-right: 1px dotted #000;
+	border-bottom: 1px dotted #000;	
+	max-width: 100px;
+	overflow:hidden;
+	width: 100px; 
+	height: 29px
+
+}
+
+
+
+#menu-row, #menu-col {
+	list-style: none;
+	background-color: #fff;
+	float:left;
+	border: 1px solid #ccc;
+	padding: 0;
+	position: absolute;
+	visibility: hidden;
+}
+
+#menu-row li, #menu-col li {
+	font-family: Arial;
+	color: #333;
+	padding: 13px;
+	font-size: 10px;
+
+} 
+
+#menu-row li:hover, #menu-col li:hover {
+	font-family: Arial;
+	background-color: #ccc;
+
+}</code></pre>
+            </div>
+
+            <div id="tab-txt" class="source-panel">
+<pre><code>#canvase {
+	background-color: #fff;
+	margin: 0 auto;
+}</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Archived &amp; Published by <strong>Raj Sekharan (Raj Aramudan)</strong> &bull; <a href="https://aramudan.dev" target="_blank">aramudan.dev</a> &bull; Original submission timestamp: <code>Wed, 20 Feb 2013 22:32:34 +0530</code></p>
+        </div>
+    </footer>
+
+    <script>
+        function showTab(id, btn) {
+            var panels = document.querySelectorAll('.source-panel');
+            for (var i = 0; i < panels.length; i++) {
+                panels[i].classList.remove('active');
+            }
+            var buttons = document.querySelectorAll('.tab-btn');
+            for (var j = 0; j < buttons.length; j++) {
+                buttons[j].classList.remove('active');
+            }
+            document.getElementById('tab-' + id).classList.add('active');
+            btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>
