@@ -6,23 +6,21 @@
     <title>Flipkart Machine Coding Round (Feb 20, 2013) — 13-Year Retrospective | Raj Sekharan</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #ffffff;
-            --surface: #f8f9fa;
-            --surface-elevated: #eef1f4;
-            --border: #d0d7de;
-            --border-subtle: #e5e8ec;
-            --text: #1f2328;
-            --text-muted: #4d5561;
-            --text-dim: #656d76;
-            --accent: #0969da;
-            --accent-soft: #ddf4ff;
-            --emerald: #1a7f37;
-            --emerald-soft: #dafbe1;
-            --amber: #9a6700;
-            --amber-soft: #fff8c5;
+            --surface: #f7f7f5;
+            --surface-elevated: #efefec;
+            --border: #dcdcdc;
+            --border-dark: #121212;
+            --border-subtle: #e8e8e5;
+            --text: #121212;
+            --text-muted: #363636;
+            --text-dim: #666666;
+            --accent: #326891;
+            --emerald: #1a6633;
+            --emerald-soft: #f0f8f2;
         }
 
         * {
@@ -34,138 +32,153 @@
         body {
             background-color: var(--bg);
             color: var(--text);
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            font-size: 14px;
-            line-height: 1.65;
+            font-family: 'Libre Baskerville', Georgia, 'Times New Roman', Times, serif;
+            font-size: 16px;
+            line-height: 1.72;
             -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 980px;
+            max-width: 1080px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 28px;
         }
 
-        /* Header / Nav */
+        /* NYTimes Masthead Header */
         header.topbar {
-            border-bottom: 1px solid var(--border);
-            background: #f6f8fa;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            background: #ffffff;
+            padding-top: 18px;
+        }
+
+        .masthead-title {
+            text-align: center;
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #121212;
+            text-decoration: none;
+            display: block;
+            padding-bottom: 12px;
         }
 
         .topbar-inner {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 52px;
-            font-family: Verdana, Geneva, sans-serif;
-            font-size: 12px;
+            padding: 8px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 3px double var(--border-dark);
+            font-family: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 11.5px;
+            color: var(--text-dim);
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .brand {
             color: var(--text);
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 700;
-        }
-
-        .brand-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .nav-links {
             display: flex;
-            gap: 18px;
+            gap: 20px;
             align-items: center;
         }
 
         .nav-links a {
-            color: var(--accent);
+            color: var(--text);
             text-decoration: none;
+            font-weight: 500;
+            font-size: 12px;
         }
 
         .nav-links a:hover {
             text-decoration: underline;
+            color: var(--accent);
         }
 
-        /* Hero */
+        /* Hero / Lead Story Header */
         .hero {
-            padding: 40px 0 32px;
-            border-bottom: 1px solid var(--border);
+            padding: 38px 0 32px;
+            border-bottom: 1px solid var(--border-dark);
             background: #ffffff;
         }
 
         .eyebrow {
-            display: inline-block;
-            font-family: Verdana, Geneva, sans-serif;
-            font-size: 11px;
+            display: block;
+            font-family: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 11.5px;
             font-weight: 700;
-            color: var(--text-muted);
-            border: 1px solid var(--border);
-            background: var(--surface);
-            padding: 4px 10px;
-            border-radius: 3px;
-            margin-bottom: 16px;
-            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            color: var(--text);
+            margin-bottom: 12px;
+            letter-spacing: 0.07em;
         }
 
         .hero h1 {
-            font-family: Verdana, Geneva, sans-serif;
-            font-size: 26px;
+            font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+            font-size: 35px;
             font-weight: 700;
-            line-height: 1.35;
-            color: var(--text);
-            max-width: 900px;
-            margin-bottom: 14px;
+            line-height: 1.26;
+            color: #121212;
+            max-width: 920px;
+            margin-bottom: 16px;
+            letter-spacing: -0.015em;
         }
 
         .hero h1 em {
-            color: var(--accent);
+            color: #121212;
             font-style: italic;
         }
 
         .hero-lead {
-            font-size: 14px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 19px;
+            line-height: 1.55;
             color: var(--text-muted);
             max-width: 840px;
-            margin-bottom: 24px;
+            margin-bottom: 26px;
         }
 
         .meta-strip {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-            padding: 14px 16px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            margin-bottom: 20px;
+            gap: 16px;
+            padding: 16px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 22px;
         }
 
         .meta-item {
             display: flex;
             flex-direction: column;
             gap: 3px;
+            border-right: 1px solid var(--border-subtle);
+            padding-right: 12px;
+        }
+
+        .meta-item:last-child {
+            border-right: none;
         }
 
         .meta-label {
-            font-family: Verdana, Geneva, sans-serif;
-            font-size: 11px;
+            font-family: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 10.5px;
             text-transform: uppercase;
             color: var(--text-dim);
             font-weight: 700;
+            letter-spacing: 0.06em;
         }
 
         .meta-value {
-            font-family: Verdana, Geneva, sans-serif;
-            font-size: 13px;
+            font-family: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 13.5px;
             color: var(--text);
             font-weight: 600;
         }
@@ -177,66 +190,69 @@
         .cta-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 8px 14px;
-            font-family: Verdana, Geneva, sans-serif;
+            padding: 9px 16px;
+            font-family: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
             font-size: 12px;
             font-weight: 700;
-            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            border-radius: 2px;
             text-decoration: none;
         }
 
         .btn-primary {
-            background: var(--accent);
+            background: #121212;
             color: #ffffff;
-            border: 1px solid var(--accent);
+            border: 1px solid #121212;
         }
 
         .btn-primary:hover {
-            background: #0550ae;
+            background: #333333;
         }
 
         .btn-secondary {
-            background: var(--surface);
-            color: var(--text);
+            background: #ffffff;
+            color: #121212;
             border: 1px solid var(--border);
         }
 
         .btn-secondary:hover {
-            background: var(--surface-elevated);
+            border-color: #121212;
         }
 
         /* Section Layout */
         section {
-            padding: 36px 0;
-            border-bottom: 1px solid var(--border);
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border-dark);
         }
 
         .section-header {
-            margin-bottom: 20px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 24px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
         }
 
         .section-tag {
-            font-family: Verdana, Geneva, sans-serif;
+            font-family: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
             font-size: 11px;
             font-weight: 700;
             color: var(--text-dim);
             text-transform: uppercase;
+            letter-spacing: 0.08em;
             display: block;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
         .section-title {
-            font-family: Verdana, Geneva, sans-serif;
-            font-size: 20px;
+            font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+            font-size: 24px;
             font-weight: 700;
             line-height: 1.3;
             color: var(--text);
@@ -244,19 +260,17 @@
 
         /* Personal Note */
         .personal-note {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-left: 4px solid var(--accent);
-            border-radius: 4px;
-            padding: 24px 28px;
+            max-width: 760px;
+            padding: 8px 0 8px 24px;
+            border-left: 2px solid #121212;
         }
 
         .personal-note p {
-            font-family: Verdana, Geneva, sans-serif;
-            font-size: 14px;
-            line-height: 1.75;
-            color: var(--text);
-            margin-bottom: 14px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 18px;
+            line-height: 1.78;
+            color: #222222;
+            margin-bottom: 18px;
         }
 
         .personal-note p:last-of-type {
@@ -269,12 +283,13 @@
         }
 
         .signature {
-            margin-top: 18px;
+            margin-top: 20px;
             padding-top: 12px;
             border-top: 1px solid var(--border);
-            font-family: Verdana, Geneva, sans-serif;
+            font-family: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
             font-size: 12px;
-            color: var(--text-muted);
+            font-weight: 600;
+            color: var(--text-dim);
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
@@ -285,7 +300,7 @@
         .email-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
+            gap: 20px;
         }
 
         @media (max-width: 860px) {
@@ -297,8 +312,6 @@
         .email-card {
             background: #ffffff;
             border: 1px solid var(--border);
-            border-radius: 4px;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
         }
@@ -307,9 +320,9 @@
             background: var(--surface);
             padding: 12px 16px;
             border-bottom: 1px solid var(--border);
-            font-family: Verdana, Geneva, sans-serif;
+            font-family: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
             font-size: 12px;
-            color: var(--text-muted);
+            color: var(--text-dim);
         }
 
         .email-header div {
@@ -322,10 +335,10 @@
         }
 
         .email-body {
-            padding: 16px;
+            padding: 18px;
             font-family: Consolas, 'Courier New', monospace;
             font-size: 12.5px;
-            line-height: 1.6;
+            line-height: 1.65;
             color: var(--text);
             white-space: pre-wrap;
             flex: 1;
@@ -333,26 +346,28 @@
         }
 
         .outcome-banner {
-            margin-top: 16px;
-            padding: 12px 16px;
+            margin-top: 18px;
+            padding: 14px 18px;
             background: var(--emerald-soft);
-            border: 1px solid #a4e6b5;
-            border-radius: 4px;
+            border-top: 1px solid var(--border-dark);
+            border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 13px;
+            gap: 14px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 15px;
             color: var(--text);
         }
 
         .outcome-badge {
-            font-family: Verdana, Geneva, sans-serif;
+            font-family: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
             font-size: 11px;
             font-weight: 700;
-            background: var(--emerald);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: #121212;
             color: #ffffff;
-            padding: 4px 8px;
-            border-radius: 3px;
+            padding: 5px 10px;
             white-space: nowrap;
         }
 
@@ -360,41 +375,48 @@
         .demo-instructions {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 12px;
-            margin-bottom: 16px;
+            gap: 20px;
+            margin-bottom: 22px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--border);
         }
 
         .step-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            padding: 14px 16px;
+            padding-right: 16px;
+            border-right: 1px solid var(--border-subtle);
+        }
+
+        .step-card:last-child {
+            border-right: none;
         }
 
         .step-num {
-            font-family: Verdana, Geneva, sans-serif;
-            font-size: 11px;
+            font-family: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 10.5px;
             font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-dim);
+            margin-bottom: 5px;
             display: block;
         }
 
         .step-card h4 {
-            font-size: 13.5px;
-            margin-bottom: 4px;
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-size: 15px;
+            margin-bottom: 6px;
             color: var(--text);
         }
 
         .step-card p {
-            font-size: 12.5px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 14px;
+            line-height: 1.55;
             color: var(--text-muted);
         }
 
         .browser-window {
             border: 1px solid var(--border);
-            border-radius: 4px;
-            overflow: hidden;
             background: #ffffff;
         }
 
@@ -403,11 +425,11 @@
             align-items: center;
             justify-content: space-between;
             padding: 8px 14px;
-            background: var(--surface-elevated);
+            background: var(--surface);
             border-bottom: 1px solid var(--border);
-            font-family: Verdana, Geneva, sans-serif;
+            font-family: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
             font-size: 12px;
-            color: var(--text-muted);
+            color: var(--text-dim);
         }
 
         .window-dots {
@@ -416,11 +438,11 @@
         }
 
         .window-dots span {
-            width: 10px;
-            height: 10px;
+            width: 9px;
+            height: 9px;
             border-radius: 50%;
-            background: #bbb;
-            border: 1px solid #999;
+            background: #ccc;
+            border: 1px solid #aaa;
         }
 
         .demo-iframe {
@@ -434,42 +456,46 @@
         /* Architectural Review Grid */
         .review-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 28px 24px;
         }
 
         .review-card {
             background: #ffffff;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            padding: 18px;
+            border-top: 1px solid #121212;
+            padding-top: 14px;
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
 
         .review-card .num {
-            font-family: Verdana, Geneva, sans-serif;
-            font-size: 11px;
+            font-family: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 10.5px;
             font-weight: 700;
-            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--text-dim);
         }
 
         .review-card h3 {
-            font-size: 15px;
+            font-family: 'Libre Baskerville', Georgia, serif;
+            font-size: 17px;
+            font-weight: 700;
             line-height: 1.35;
             color: var(--text);
         }
 
         .review-card p {
-            font-size: 13px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 14.5px;
+            line-height: 1.62;
             color: var(--text-muted);
         }
 
         .code-snippet {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 3px;
             padding: 10px 12px;
             font-family: Consolas, 'Courier New', monospace;
             font-size: 12px;
@@ -490,20 +516,20 @@
 
         .tab-btn {
             background: var(--surface);
-            color: var(--text-muted);
+            color: var(--text-dim);
             border: 1px solid var(--border);
             border-bottom: none;
-            padding: 8px 14px;
-            font-family: Verdana, Geneva, sans-serif;
+            padding: 9px 16px;
+            font-family: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
             font-size: 12px;
+            font-weight: 600;
             cursor: pointer;
-            border-radius: 4px 4px 0 0;
         }
 
         .tab-btn.active {
             background: #ffffff;
-            color: var(--accent);
-            border-color: var(--border);
+            color: #121212;
+            border-top: 2px solid #121212;
             font-weight: 700;
         }
 
@@ -512,8 +538,7 @@
             background: var(--surface);
             border: 1px solid var(--border);
             border-top: none;
-            border-radius: 0 0 4px 4px;
-            padding: 16px;
+            padding: 18px;
             overflow-x: auto;
             max-height: 640px;
             overflow-y: auto;
@@ -532,10 +557,9 @@
 
         code {
             font-family: Consolas, 'Courier New', monospace;
-            background: var(--surface-elevated);
+            background: var(--surface);
             padding: 1px 4px;
-            border-radius: 3px;
-            font-size: 92%;
+            font-size: 88%;
         }
 
         .source-panel pre code {
@@ -544,12 +568,12 @@
         }
 
         footer {
-            padding: 28px 0;
+            padding: 32px 0;
             text-align: center;
-            font-family: Verdana, Geneva, sans-serif;
+            font-family: 'Libre Franklin', 'Helvetica Neue', Arial, sans-serif;
             font-size: 12px;
             color: var(--text-dim);
-            background: var(--surface);
+            background: #ffffff;
         }
 
         footer a {
@@ -561,25 +585,25 @@
 <body>
 
     <header class="topbar">
-        <div class="container topbar-inner">
-            <a href="#" class="brand">
-                <span class="brand-dot"></span>
-                <span>RAJ SEKHARAN // 2013 MACHINE CODING TIME CAPSULE</span>
-            </a>
-            <nav class="nav-links">
-                <a href="#personal-note">Reflection</a>
-                <a href="#email-thread">The 2013 Email</a>
-                <a href="#live-demo">Live Demo</a>
-                <a href="#code-review">Code Review</a>
-                <a href="#source-code">Raw Source</a>
-                <a href="original-2013-archive/sol.zip" download>sol.zip &darr;</a>
-            </nav>
+        <div class="container">
+            <a href="#" class="masthead-title">The Engineering Archives</a>
+            <div class="topbar-inner">
+                <a href="#" class="brand">Raj Sekharan &middot; 2013 Machine Coding Time Capsule</a>
+                <nav class="nav-links">
+                    <a href="#personal-note">Reflection</a>
+                    <a href="#email-thread">The 2013 Email</a>
+                    <a href="#live-demo">Live Demo</a>
+                    <a href="#code-review">Code Review</a>
+                    <a href="#source-code">Raw Source</a>
+                    <a href="original-2013-archive/sol.zip" download>sol.zip &darr;</a>
+                </nav>
+            </div>
         </div>
     </header>
 
     <section class="hero">
         <div class="container">
-            <div class="eyebrow">TIME CAPSULE &bull; WED, 20 FEB 2013 (17:14 &rarr; 22:32 IST) &bull; BANGALORE</div>
+            <div class="eyebrow">Time Capsule &middot; Wednesday, Feb. 20, 2013 (17:14 &rarr; 22:32 IST) &middot; Bangalore</div>
             <h1>&ldquo;Attached is my solution. It&rsquo;s partial and doesn&rsquo;t do everything you asked. <em>But here is anyway FWIW.</em>&rdquo;</h1>
             <p class="hero-lead">
                 On a Wednesday evening in February 2013—while working as a UI Consultant at ThoughtWorks in India—I was sent a 5-hour machine coding test by Flipkart: build Microsoft Excel in pure vanilla JavaScript (no jQuery, must support IE7, Firefox, and Chrome). Thirteen years later, I opened the original <code>.eml</code> and <code>sol.zip</code> archive.
@@ -616,7 +640,7 @@
     <section id="personal-note">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">01 // Personal Note (November 2026)</span>
+                <span class="section-tag">Part I &mdash; Personal Note (November 2026)</span>
                 <h2 class="section-title">How It Feels Rediscovering This Code 13 Years Later</h2>
             </div>
 
@@ -638,7 +662,7 @@
                 </p>
 
                 <div class="signature">
-                    <span>&mdash; Raj Sekharan (Raj Aramudan)</span>
+                    <span>By Raj Sekharan (Raj Aramudan)</span>
                     <span>Bangalore (Feb 2013) &rarr; Amsterdam (Nov 2026)</span>
                 </div>
             </div>
@@ -649,7 +673,7 @@
     <section id="email-thread">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">02 // The Verbatim 2013 Email Thread</span>
+                <span class="section-tag">Part II &mdash; The Verbatim 2013 Email Thread</span>
                 <h2 class="section-title">5:14 PM Challenge &rarr; 10:32 PM Submission</h2>
             </div>
 
@@ -695,7 +719,7 @@ Raj</div>
             </div>
 
             <div class="outcome-banner">
-                <span class="outcome-badge">RESULT: PASSED TO INTERVIEW</span>
+                <span class="outcome-badge">Result: Passed to Interview</span>
                 <span>Despite being a partial submission at 10:32 PM, the Flipkart engineering reviewer inspected <code>spreadsheet.js</code>, recognized 374 lines of original closure-structured vanilla ES5 &amp; IE7/W3C DOM engineering, and invited me in for the onsite interview.</span>
             </div>
         </div>
@@ -705,23 +729,23 @@ Raj</div>
     <section id="live-demo">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">03 // Live Interactive 2013 Artifact</span>
+                <span class="section-tag">Part III &mdash; Live Interactive 2013 Artifact</span>
                 <h2 class="section-title">Play With the 2013 Spreadsheet Engine Right in Your Browser</h2>
             </div>
 
             <div class="demo-instructions">
                 <div class="step-card">
-                    <span class="step-num">INTERACTION 01 // INLINE EDIT</span>
+                    <span class="step-num">Interaction 1 &middot; Inline Edit</span>
                     <h4>Click Any Cell &amp; Type</h4>
                     <p>Clicking any cell sets <code>contentEditable="true"</code> in place without swapping <code>&lt;input&gt;</code> nodes. Clicking away blurs it back to read-only.</p>
                 </div>
                 <div class="step-card">
-                    <span class="step-num">INTERACTION 02 // ROW &amp; COL SELECTION</span>
+                    <span class="step-num">Interaction 2 &middot; Row &amp; Col Selection</span>
                     <h4>Click Header <code>0..49</code> or Left Gutter</h4>
                     <p>Click any top column header (<code>0</code>, <code>1</code>, <code>2</code>&hellip;) or any left-hand gray row selector box to highlight the entire column or row via <code>columnDo</code> / <code>rowDo</code>.</p>
                 </div>
                 <div class="step-card">
-                    <span class="step-num">INTERACTION 03 // CUSTOM CONTEXT MENU</span>
+                    <span class="step-num">Interaction 3 &middot; Custom Context Menu</span>
                     <h4>Select Row/Col &rarr; Right-Click &rarr; Delete</h4>
                     <p>Once a column or row is highlighted, <strong>right-click anywhere on the grid</strong> to open the custom context menu and click <strong>Delete Column</strong> or <strong>Delete Row</strong>.</p>
                 </div>
@@ -737,7 +761,7 @@ Raj</div>
                 </div>
                 <iframe class="demo-iframe" src="demo/index.html" title="2013 Flipkart Machine Coding Spreadsheet Demo"></iframe>
             </div>
-            <p style="margin-top: 0.85rem; font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; color: var(--text-dim);">
+            <p style="margin-top: 12px; font-family: 'Libre Franklin', sans-serif; font-size: 12px; color: var(--text-dim);">
                 * Note on historical preservation: The untouched byte-for-byte 2013 files (written for IE7/IE8 on Windows in Notepad++) are archived in <a href="original-2013-archive/sol.zip" style="color: var(--accent);">original-2013-archive/sol.zip</a>. The live embed above includes a tiny strict-mode compatibility patch (<code>var el</code> declaration on line 251, standard CSS <code>left/top</code> alongside IE's <code>posLeft/posTop</code>, and removing one stray <code>&lt;</code> in <code>index.html</code>) so it runs identically in 2026 Chrome/Safari/Firefox as it did in 2013 IE.
             </p>
         </div>
@@ -747,13 +771,13 @@ Raj</div>
     <section id="code-review">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">04 // 2026 Engineering Code Review</span>
+                <span class="section-tag">Part IV &mdash; 2026 Engineering Code Review</span>
                 <h2 class="section-title">What Stands Out in the 2013 Implementation</h2>
             </div>
 
             <div class="review-grid">
                 <div class="review-card">
-                    <span class="num">SIGNAL 01 // CLOSURE OOP &amp; STRICT MODE</span>
+                    <span class="num">01 &middot; Closure OOP &amp; Strict Mode</span>
                     <h3>Douglas Crockford Style Encapsulation</h3>
                     <p>
                         In February 2013, 90% of submissions had global functions scattered across a script tag. Opening the file with an IIFE, <code>"use strict";</code>, and an encapsulated <code>LayoutManager</code> constructor immediately signaled real JavaScript maturity.
@@ -767,7 +791,7 @@ Raj</div>
                 </div>
 
                 <div class="review-card">
-                    <span class="num">SIGNAL 02 // THOUGHTWORKS RUBY / SMALLTALK DNA</span>
+                    <span class="num">02 &middot; ThoughtWorks Ruby &amp; Smalltalk DNA</span>
                     <h3>Higher-Order Iterators (<code>columnDo</code> &amp; <code>rowDo</code>)</h3>
                     <p>
                         Named after Smalltalk/Ruby <code>do</code> blocks from ThoughtWorks, <code>columnDo</code> and <code>rowDo</code> pass each matching DOM cell as <code>this</code> via <code>callback.apply(el)</code>—rebuilding jQuery&rsquo;s <code>.each()</code> mechanism from scratch and reusing it across select, unselect, and delete.
@@ -780,7 +804,7 @@ Raj</div>
                 </div>
 
                 <div class="review-card">
-                    <span class="num">SIGNAL 03 // COORDINATE INVARIANTS</span>
+                    <span class="num">03 &middot; Coordinate Invariants</span>
                     <h3>Solving the &ldquo;Shifting Index on Delete&rdquo; Bug</h3>
                     <p>
                         If you delete Column 2 using raw DOM child indices (<code>childNodes[2]</code>), Column 3 shifts to index 2 and subsequent deletions corrupt the grid. By stamping every cell with logical coordinate attributes (<code>columnoffsetval</code> and <code>row</code>), deleting arbitrary rows or columns never broke subsequent selections.
@@ -792,7 +816,7 @@ if (offset == index) {
                 </div>
 
                 <div class="review-card">
-                    <span class="num">SIGNAL 04 // ZERO-LIBRARY BROWSER SHIMS</span>
+                    <span class="num">04 &middot; Zero-Library Browser Shims</span>
                     <h3>Hand-Rolled Cross-Browser <code>bind()</code> &amp; IE7 Shims</h3>
                     <p>
                         Because jQuery was prohibited and IE7 was required, I wrote custom shims for event binding (<code>attachEvent</code> vs. <code>addEventListener</code>), target resolution (<code>e.srcElement</code> vs. <code>e.target</code>), and even compensated for W3C whitespace text-node offsets in <code>childNodes</code>.
@@ -807,7 +831,7 @@ if (offset == index) {
                 </div>
 
                 <div class="review-card">
-                    <span class="num">SIGNAL 05 // DESKTOP GUI MINDSET</span>
+                    <span class="num">05 &middot; Desktop GUI Mindset</span>
                     <h3><code>LayoutManager</code>, <code>#junction</code> &amp; Context Menus</h3>
                     <p>
                         Borrowing <code>LayoutManager</code> from Java Swing / Android UI architecture, I built a full-viewport <code>div</code> grid with a 30&times;30px top-left <code>#junction</code> origin block, row/column selector bars, and context-sensitive right-click menus (<code>#menu-row</code> vs. <code>#menu-col</code>).
@@ -820,13 +844,13 @@ if (offset == index) {
                 </div>
 
                 <div class="review-card">
-                    <span class="num">SIGNAL 06 // HONEST RETROSPECTIVE LESSON</span>
+                    <span class="num">06 &middot; Honest Retrospective Lesson</span>
                     <h3>Why the 5-Hour Clock Ran Out (DOM vs. 2D State)</h3>
                     <p>
                         Why did I run out of time before finishing Sort and Add Row? Because I spent 3.5 hours perfecting the desktop-style viewport chrome and mutated 2,500 DOM nodes directly instead of backing the grid with a tiny 2D array (<code>grid[r][c]</code>). It was the classic craftsman trade-off—and the exact reason the reviewer still said yes.
                     </p>
-                    <pre class="code-snippet">// The 2013 Notepad++ artifact inside sol.zip:
-// File: "sol/new  3.txt" (4 lines)
+                    <pre class="code-snippet">/* The 2013 Notepad++ artifact inside sol.zip:
+   File: "sol/new  3.txt" (4 lines) */
 #canvase {
     background-color: #fff;
 }</pre>
@@ -839,7 +863,7 @@ if (offset == index) {
     <section id="source-code">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">05 // Complete 2013 Source Archive</span>
+                <span class="section-tag">Part V &mdash; Complete 2013 Source Archive</span>
                 <h2 class="section-title">Inspect the Original Files from <code>sol.zip</code></h2>
             </div>
 
