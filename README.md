@@ -27,7 +27,7 @@ But here is anyway FWIW.
 Raj
 ```
 
-**Outcome**: Despite running out of the 5-hour clock before wiring up column sorting and row insertion, **Flipkart invited me in for the onsite interview** after reviewing the 374 lines of closure-structured, zero-library vanilla ES5 in `spreadsheet.js`.
+**Outcome**: Despite running out of the 5-hour clock before wiring up column sorting and row insertion, **I passed the coding round and Flipkart invited me in for the onsite interview** after reviewing the 374 lines of closure-structured, zero-library vanilla ES5 in `spreadsheet.js` (while I passed the coding round, the role ultimately did not pan out for other reasons).
 
 ---
 
